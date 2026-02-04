@@ -1,4 +1,4 @@
-import { Moon, Sun, LogIn, LogOut, Calculator, FolderOpen, CreditCard, Settings } from 'lucide-react';
+import { Moon, Sun, LogIn, LogOut, Calculator, FolderOpen, CreditCard, Settings, FileText, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link, useLocation } from 'react-router-dom';
@@ -62,8 +62,17 @@ export const Header = ({ onLoginClick }: HeaderProps) => {
               location.pathname === '/' ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
-            <Calculator className="h-4 w-4" />
-            Rechner
+            <FileText className="h-4 w-4" />
+            Grundsteuer
+          </Link>
+          <Link
+            to="/rendite-rechner"
+            className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
+              location.pathname === '/rendite-rechner' ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            <TrendingUp className="h-4 w-4" />
+            Rendite
           </Link>
           {user && (
             <Link
