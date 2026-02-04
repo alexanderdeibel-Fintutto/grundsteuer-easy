@@ -7,6 +7,26 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
+// Allowed domains for redirect URLs to prevent open redirect attacks
+const ALLOWED_DOMAINS = [
+  'localhost',
+  'lovable.app',
+  'lovable.dev',
+]
+
+function isValidRedirectUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url)
+    // Check if hostname matches allowed domains or is a subdomain of them
+    return ALLOWED_DOMAINS.some(domain => 
+      parsed.hostname === domain || 
+      parsed.hostname.endsWith(`.${domain}`)
+    )
+  } catch {
+    return false
+  }
+}
+
 serve(async (req) => {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
@@ -54,6 +74,14 @@ serve(async (req) => {
     if (!priceId || !successUrl || !cancelUrl) {
       return new Response(
         JSON.stringify({ error: 'Missing required fields: priceId, successUrl, cancelUrl' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // Validate redirect URLs to prevent open redirect attacks
+    if (!isValidRedirectUrl(successUrl) || !isValidRedirectUrl(cancelUrl)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid redirect URL - only allowed domains are permitted' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
