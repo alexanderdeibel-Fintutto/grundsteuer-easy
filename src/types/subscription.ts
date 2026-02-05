@@ -50,8 +50,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     description: 'Für aktive Investoren',
     monthlyPrice: 9.99,
     yearlyPrice: 95.90,
-    priceIdMonthly: 'price_1SwLDt52lqSgjCzeYslwpr6I',
-    priceIdYearly: 'price_1SwLLb52lqSgjCze6Gdp9SIz',
+    priceIdMonthly: 'price_1SuLkn52lqSgjCzeyDWC8XPC',
+    priceIdYearly: 'price_1SuLkn52lqSgjCze5pA0TO82',
     features: [
       'Unbegrenzte Berechnungen',
       'Alle Basis-Funktionen',
