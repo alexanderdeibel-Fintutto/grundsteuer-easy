@@ -40,7 +40,7 @@ const Index = () => {
       <Header onLoginClick={() => setShowAuthModal(true)} />
 
       {/* Hero Section */}
-      <div className="gradient-primary text-white py-8 px-4">
+      <div className="gradient-hero text-white py-8 px-4">
         <div className="container">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">Rendite-Rechner</h1>
           <p className="text-white/80 text-lg">
